@@ -8,7 +8,7 @@ class Cloud {
   Cloud() {
     loc = new PVector(0, 20);  
     vel = new PVector(3, 0);
-    cloudS = 50;
+    cloudS = 100;
     Cloud = loadImage("Cloud.png");
   }
   
@@ -18,7 +18,7 @@ class Cloud {
   
   void move() {
     loc.add(vel);
-    if (loc.x > width && loc.x <0) {
+    if (loc.x > width-cloudS || loc.x <0) {
       vel.mult(-1);
     }
   }

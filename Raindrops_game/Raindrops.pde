@@ -1,25 +1,25 @@
 class Raindrops {
-  PVector locs;
-  PVector vels;
-  int count = 1000;
+  PVector loc;
+  PVector vel;
+  PVector acc;
   float d;
-  color c;
   PImage Rain;
 
   Raindrops() {
-    locs = new PVector(random(width), 0);
-    vels = new PVector(0, random(5));
-    d = 10;
-    c = color(255);
+    loc = new PVector(random(width), 0);
+    vel = new PVector(0, 0);
+    acc = new PVector(0, .07);
+    d = 20;
     Rain = loadImage("Rain.png");
   }
 
   void display() {
-    image(Rain,locs.x, locs.y, d, d);
+    image(Rain, loc.x, loc.y, d, d);
   }
 
   void move() {
-    locs.add(vels);
+    vel.add(acc);
+    loc.add(vel);
   }
-}
 
+}
