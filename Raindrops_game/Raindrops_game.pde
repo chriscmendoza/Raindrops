@@ -22,6 +22,7 @@ void setup() { //this will run once//
 }
 
 void draw() { //this will run on a continuous loop//
+println(miss);
   if (miss<3) {
     background(BadDay); //this gives the color of the background//
     textSize(32); //this gives the size of the text// 
