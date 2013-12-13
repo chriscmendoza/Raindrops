@@ -15,14 +15,19 @@ Raindrops[] drop = new Raindrops[1000]; //creates an array of rain drops//
 Cloud c1; 
 Catcher catch1; //declares a class//
 PImage BadDay;
+PImage Button;
+int ButtonS;
 int rain;
 int miss;
 int oldTime;
 int score; // declares a variable//
+boolean run;
 
 void setup() { //this will run once//
   BadDay = loadImage("Bad Day.png"); 
   size(BadDay.width, BadDay.height); //declares the size of the display screen//
+  Button = loadImage("Rain Button.png");
+  ButtonS = 100;
   rain = 0;
   score = 0;
   miss = 0;
@@ -35,10 +40,13 @@ void setup() { //this will run once//
   minim = new Minim(this);
   player = minim.loadFile("Bad Day.mp3");
   player.loop();
+  run = true;
 }
 
 void draw() { //this will run on a continuous loop//
-  println(miss);
+  if (run==true) {
+    image(Button, width/2, height/2, ButtonS, ButtonS);
+  }
   if (miss<3) {
     background(BadDay); //this gives the color of the background//
     textSize(32); //this gives the size of the text// 
