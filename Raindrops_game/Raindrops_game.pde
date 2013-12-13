@@ -1,3 +1,16 @@
+import ddf.minim.spi.*;
+import ddf.minim.signals.*;
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+import ddf.minim.ugens.*;
+import ddf.minim.effects.*;
+
+
+
+Minim minim;
+AudioPlayer player;
+
+
 Raindrops[] drop = new Raindrops[1000]; //creates an array of rain drops//
 Cloud c1; 
 Catcher catch1; //declares a class//
@@ -19,10 +32,13 @@ void setup() { //this will run once//
   for (int i =0; i < drop.length; i++) {
     drop[i] = new Raindrops(c1);
   } //initializes the raindrops//
+  minim = new Minim(this);
+  player = minim.loadFile("Bad Day.mp3");
+  player.loop();
 }
 
 void draw() { //this will run on a continuous loop//
-println(miss);
+  println(miss);
   if (miss<3) {
     background(BadDay); //this gives the color of the background//
     textSize(32); //this gives the size of the text// 
