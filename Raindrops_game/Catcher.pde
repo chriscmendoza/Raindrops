@@ -28,7 +28,7 @@ class Catcher { //this declares the class//
     if (drop.loc.y > height) {
       drop.loc.set(-width, height*200000000);
       drop.vel.set(0, 0);
-      miss++;
+      lives++;
         }
       }//if a raindrop is missed and goes off the screen, the variable miss will increase by one//
     } 

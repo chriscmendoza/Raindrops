@@ -18,8 +18,9 @@ PImage BadDay;
 PImage Button;
 int ButtonS;
 int rain;
-int miss;
+int lives;
 int oldTime;
+int imagex, imagey;
 int score; // declares a variable//
 boolean run;
 
@@ -30,7 +31,9 @@ void setup() { //this will run once//
   ButtonS = 100;
   rain = 0;
   score = 0;
-  miss = 0;
+  imagex = width/2;
+  imagey = height/2;
+  lives = 0;
   oldTime = 3000; //the variables are given numbers//
   c1 = new Cloud();
   catch1 = new Catcher(); //from the class, the object will be created//
@@ -45,33 +48,41 @@ void setup() { //this will run once//
 
 void draw() { //this will run on a continuous loop//
   if (run==true) {
-    image(Button, width/2, height/2, ButtonS, ButtonS);
+    imageMode(CENTER);
+    image(Button, imagex, imagey, ButtonS, ButtonS);
   }
-  if (miss<3) {
-    background(BadDay); //this gives the color of the background//
-    textSize(32); //this gives the size of the text// 
-    text("Score: " + score, width-170, 40); //this displays the text at specific coordinates//
-    drop[rain] = new Raindrops(c1); // the raindrop will fall from the cloud//
-    for (int i =0; i < rain; i++) {
-      drop[i].display();
-      drop[i].move();
-      catch1.check(drop[i]);
-      catch1.Lose(drop[i]);
-    } //this allows one rain drop to fall//
-    c1.display(); // the cloud will display//
-    c1.move(); //the  cloud will move//
-    catch1.display(); // the catcher is displayed//
-    if (millis()-oldTime >=3000) {
-      oldTime = millis();
-      rain++;
-    }
-  }//this is the timer. it will allow only one rain drop to fall after a certain time interval. As of now, every three seconds, a new raindrop will fall//
   else {
-    background(0);
-    textAlign(CENTER);
-    fill(255, 0, 0);
-    textSize(64);
-    text("YOU LOSE", width/2, height/2);
-  }//if the variable miss is greater than 3, the screen will go black and the person playing will have lost the game.//
+    if (lives<5) {
+      background(BadDay); //this gives the color of the background//
+      textSize(32); //this gives the size of the text// 
+      text("Score: " + score, width-170, 40); //this displays the text at specific coordinates//
+      drop[rain] = new Raindrops(c1); // the raindrop will fall from the cloud//
+      for (int i =0; i < rain; i++) {
+        drop[i].display();
+        drop[i].move();
+        catch1.check(drop[i]);
+        catch1.Lose(drop[i]);
+      } //this allows one rain drop to fall//
+      c1.display(); // the cloud will display//
+      c1.move(); //the  cloud will move//
+      catch1.display(); // the catcher is displayed//
+      if (millis()-oldTime >=3000) {
+        oldTime = millis();
+        rain++;
+      }
+    }//this is the timer. it will allow only one rain drop to fall after a certain time interval. As of now, every three seconds, a new raindrop will fall//
+    else {
+      background(0);
+      textAlign(CENTER);
+      fill(255, 0, 0);
+      textSize(64);
+      text("YOU LOSE", width/2, height/2);
+    }//if the variable miss is greater than 3, the screen will go black and the person playing will have lost the game.//
+  }
+}
+void mousePressed() {
+  if (mouseX>imagex-(ButtonS/2)&&mouseX<imagex+(ButtonS/2)&&mouseY>imagey-(ButtonS/2)&&mouseY<imagey+(ButtonS/2)) {
+    run = !run;
+  }
 }
 
