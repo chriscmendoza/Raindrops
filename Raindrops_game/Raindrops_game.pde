@@ -22,9 +22,10 @@ int lives;
 int oldTime;
 int imagex, imagey;
 int score; // declares a variable//
-boolean run;
+boolean go;
+boolean gameover;
 
-void setup() { //this will run once//
+void setup() { //this will go once//
   BadDay = loadImage("Bad Day.png"); 
   size(BadDay.width, BadDay.height); //declares the size of the display screen//
   Button = loadImage("Rain Button.png");
@@ -43,16 +44,21 @@ void setup() { //this will run once//
   minim = new Minim(this);
   player = minim.loadFile("Bad Day.mp3");
   player.loop();
-  run = true;
+  go = true;
+  gameover = true;
 }
 
-void draw() { //this will run on a continuous loop//
-  if (run==true) {
+void draw() { //this will go on a continuous loop//
+  if (go == true && gameover == true) {
+    background(0); 
+    textAlign(CENTER);
+    textSize(16);
+    text("CLICK THE BUTTON TO START", imagex, imagey-50);
     imageMode(CENTER);
     image(Button, imagex, imagey, ButtonS, ButtonS);
   }
   else {
-    if (lives<5) {
+    if (lives<3) {
       background(BadDay); //this gives the color of the background//
       textSize(32); //this gives the size of the text// 
       text("Score: " + score, width-170, 40); //this displays the text at specific coordinates//
@@ -72,17 +78,27 @@ void draw() { //this will run on a continuous loop//
       }
     }//this is the timer. it will allow only one rain drop to fall after a certain time interval. As of now, every three seconds, a new raindrop will fall//
     else {
-      background(0);
-      textAlign(CENTER);
-      fill(255, 0, 0);
-      textSize(64);
-      text("YOU LOSE", width/2, height/2);
+      if (gameover == true) {
+        background(0);
+        textAlign(CENTER);
+        fill(255, 0, 0);
+        textSize(64);
+        text("YOU LOSE", width/2, (height/2)-50);
+        fill(255);
+        textSize(16);
+        text("CLICK THE BUTTON TO RESTART", imagex, imagey+50);
+        imageMode(CENTER);
+        image(Button, imagex, imagey, ButtonS, ButtonS);
+      }
+      else {
+        go = false;
+      }
     }//if the variable miss is greater than 3, the screen will go black and the person playing will have lost the game.//
   }
 }
 void mousePressed() {
   if (mouseX>imagex-(ButtonS/2)&&mouseX<imagex+(ButtonS/2)&&mouseY>imagey-(ButtonS/2)&&mouseY<imagey+(ButtonS/2)) {
-    run = !run;
+    go = !go;
   }
 }
 
