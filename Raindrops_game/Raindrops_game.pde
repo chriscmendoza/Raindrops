@@ -25,6 +25,7 @@ int score; // declares a variable//
 boolean go;
 boolean win;
 boolean gameover;
+boolean music;
 
 void setup() {                                                             //this will go once//
   BadDay = loadImage("Bad Day.png"); 
@@ -48,6 +49,7 @@ void setup() {                                                             //thi
   go = false;
   gameover = false;
   win = false;
+  music = false;
 }
 
 void draw() {                                                                   //this will go on a continuous loop//
@@ -80,6 +82,12 @@ void draw() {                                                                   
     }
   }                                                                  //this is the timer. it will allow only one rain drop to fall after a certain time interval. As of now, every three seconds, a new raindrop will fall//
   if (gameover == true) {
+    if (music == false) {
+      player.close();
+      player = minim.loadFile("Heartbreaker.mp3");
+      player.loop();
+    }
+    music = true;
     background(0);
     textAlign(CENTER);
     fill(255, 0, 0);
@@ -94,10 +102,17 @@ void draw() {                                                                   
   if (score == 3) {
     win = true;
     if (win==true) {
+      if (music == false) {
+        player.close();
+        player = minim.loadFile("Roller Coaster.mp3");
+        player.loop();
+      }
+      music = true;
+      go = false;
       background(0);
       fill(255);
       textSize(16);
-      text("YOU WIN", width/2, height/2);
+      text("YOU WIN", width/2, (height/2)-100);
       text("CLICK THE BUTTON TO RESTART", imagex, imagey+150);
       imageMode(CENTER);
       image(Button, imagex, imagey, ButtonS, ButtonS);
@@ -108,20 +123,35 @@ void draw() {                                                                   
 
 
 void mousePressed() {
-  if (go == false && gameover == false && mouseX>imagex-(ButtonS/2)&&mouseX<imagex+(ButtonS/2)&&mouseY>imagey-(ButtonS/2)&&mouseY<imagey+(ButtonS/2)) {
+  if (go == false && gameover == false && win == false && mouseX>imagex-(ButtonS/2)&&mouseX<imagex+(ButtonS/2)&&mouseY>imagey-(ButtonS/2)&&mouseY<imagey+(ButtonS/2)) {
     go = !go;
   }
-  if (go == false && gameover == true && mouseX>imagex-(ButtonS/2)&&mouseX<imagex+(ButtonS/2)&&mouseY>imagey-(ButtonS/2)&&mouseY<imagey+(ButtonS/2)) {
+  if (go == false && gameover == true && win == false && mouseX>imagex-(ButtonS/2)&&mouseX<imagex+(ButtonS/2)&&mouseY>imagey-(ButtonS/2)&&mouseY<imagey+(ButtonS/2)) {
     go = true;
     gameover = false;
     lives = 3;
     score = 0;
+    music = false;
+    player.close();
+    player = minim.loadFile("Bad Day.mp3");
+    player.loop();
   }
-  if (win == true && mouseX>imagex-(ButtonS/2)&&mouseX<imagex+(ButtonS/2)&&mouseY>imagey-(ButtonS/2)&&mouseY<imagey+(ButtonS/2)) {
+  if (win == true && go == false && gameover == false && mouseX>imagex-(ButtonS/2)&&mouseX<imagex+(ButtonS/2)&&mouseY>imagey-(ButtonS/2)&&mouseY<imagey+(ButtonS/2)) {
     go = true;
     gameover = false;
+    win = false;
     lives = 3;
     score = 0;
+    music = false;
+    player.close();
+    player = minim.loadFile("Bad Day.mp3");
+    player.loop();
   }
+}
+
+void stop() {
+  player.close();
+  minim.stop();
+  super.stop();
 }
 
