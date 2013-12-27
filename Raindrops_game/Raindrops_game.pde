@@ -58,6 +58,8 @@ void draw() {                                                                   
     textAlign(CENTER);
     textSize(16);
     text("CLICK THE BUTTON TO START", imagex, imagey-50);
+    text("To Win, You Must Catch Thirty Raindrops", imagex, imagey+150);
+    text("You Have Three Lives, Good Luck!", imagex, imagey+170);
     imageMode(CENTER);
     image(Button, imagex, imagey, ButtonS, ButtonS);
   }
@@ -99,7 +101,7 @@ void draw() {                                                                   
     imageMode(CENTER);
     image(Button, imagex, imagey, ButtonS, ButtonS);
   }
-  if (score == 3) {
+  if (score == 30) {
     win = true;
     if (win==true) {
       if (music == false) {
