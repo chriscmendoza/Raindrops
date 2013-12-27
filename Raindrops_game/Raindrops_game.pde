@@ -21,8 +21,9 @@ int rain;
 int lives;
 int oldTime;
 int imagex, imagey;
-int score;                                                                 // declares a variable//
+int score; // declares a variable//
 boolean go;
+boolean win;
 boolean gameover;
 
 void setup() {                                                             //this will go once//
@@ -46,6 +47,7 @@ void setup() {                                                             //thi
   player.loop();
   go = false;
   gameover = false;
+  win = false;
 }
 
 void draw() {                                                                   //this will go on a continuous loop//
@@ -89,15 +91,33 @@ void draw() {                                                                   
     imageMode(CENTER);
     image(Button, imagex, imagey, ButtonS, ButtonS);
   }
+  if (score == 3) {
+    win = true;
+    if (win==true) {
+      background(0);
+      fill(255);
+      textSize(16);
+      text("YOU WIN", width/2, height/2);
+      text("CLICK THE BUTTON TO RESTART", imagex, imagey+150);
+      imageMode(CENTER);
+      image(Button, imagex, imagey, ButtonS, ButtonS);
+    }
+  }
 }                                                                  //if the variable miss is greater than 3, the screen will go black and the person playing will have lost the game.//
 
 
 
 void mousePressed() {
-  if (mouseX>imagex-(ButtonS/2)&&mouseX<imagex+(ButtonS/2)&&mouseY>imagey-(ButtonS/2)&&mouseY<imagey+(ButtonS/2)) {
+  if (go == false && gameover == false && mouseX>imagex-(ButtonS/2)&&mouseX<imagex+(ButtonS/2)&&mouseY>imagey-(ButtonS/2)&&mouseY<imagey+(ButtonS/2)) {
     go = !go;
   }
   if (go == false && gameover == true && mouseX>imagex-(ButtonS/2)&&mouseX<imagex+(ButtonS/2)&&mouseY>imagey-(ButtonS/2)&&mouseY<imagey+(ButtonS/2)) {
+    go = true;
+    gameover = false;
+    lives = 3;
+    score = 0;
+  }
+  if (win == true && mouseX>imagex-(ButtonS/2)&&mouseX<imagex+(ButtonS/2)&&mouseY>imagey-(ButtonS/2)&&mouseY<imagey+(ButtonS/2)) {
     go = true;
     gameover = false;
     lives = 3;
