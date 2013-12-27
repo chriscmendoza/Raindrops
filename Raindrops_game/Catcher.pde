@@ -12,7 +12,8 @@ class Catcher { //this declares the class//
   }
 
   void display() { //this function will make the catcher appear//
-    loc.set(mouseX, height-S); //this sets the location//
+    loc.set(mouseX, height-(S/2)); //this sets the location//
+    imageMode(CENTER);
     image(Guy, loc.x, loc.y, S, S); //this is the catcher//
   }
   void check(Raindrops drop) { //this function will make the catcher actually catch the raindrops//
@@ -21,6 +22,9 @@ class Catcher { //this declares the class//
       drop.vel.set(0, 0);
       drop.acc.set(0, 0);
       score++;
+      if(score%5 == 0){
+      oldTime-= 20;
+      }
     } /*when the raindrops touch the catcher, the raindrops will disappear. what actually happens is that the raindrops will go off the screen when it touches the catcher. 
      this gives the impression that the raindrops are disappearing*/
   }
