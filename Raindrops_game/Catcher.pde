@@ -1,7 +1,6 @@
 class Catcher { //this declares the class//
   PVector loc; //this declares a PVector. this will help to declare the location of the 0object of the class//
   int S;
-  //  int miss; //this declares a variable//
   PImage Guy; //this declares a name for a picture//
 
   Catcher() { //this is a constructor. it initializes the class//

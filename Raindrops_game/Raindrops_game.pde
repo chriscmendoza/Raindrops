@@ -15,7 +15,9 @@ Raindrops[] drop = new Raindrops[1000];  //creates an array of rain drops//
 Cloud c1; 
 Catcher catch1;   //declares a class//
 PImage BadDay;
-PImage Button;  //declares a variable for images to be loaded//
+PImage Button;
+PImage Winner;
+PImage Loser; //declares a variable for images to be loaded//
 int ButtonS;
 int rain;
 int lives;
@@ -30,7 +32,9 @@ boolean music; // declares booleans that will allow the game to start and restar
 void setup() {    //this will run once//
   BadDay = loadImage("Bad Day.png"); //loads an image//
   size(BadDay.width, BadDay.height);    //declares the size of the display screen//
-  Button = loadImage("Rain Button.png");   //loads an image//
+  Button = loadImage("Rain Button.png");   
+  Winner = loadImage("Happy Day.png");
+  Loser = loadImage("Loser.png"); //loads an image//
   ButtonS = 100;
   rain = 0;
   score = 0;
@@ -92,7 +96,7 @@ void draw() {     //this will run on a continuous loop//
     } /*this allows for music to change when the player loses the game. a new song will play and the song before it will stop. 
      the new song will now play on a continuous loop until the player restarts the game*/
     music = true;
-    background(0);
+    background(Loser);
     textAlign(CENTER);
     fill(255, 0, 0);
     textSize(64);
@@ -103,7 +107,7 @@ void draw() {     //this will run on a continuous loop//
     imageMode(CENTER);
     image(Button, imagex, imagey, ButtonS, ButtonS);
   } // this is the gameover screen//
-  if (score == 30) {
+  if (score == 3) {
     win = true;
     if (win==true) {
       if (music == false) {
@@ -114,10 +118,12 @@ void draw() {     //this will run on a continuous loop//
        the new song will now play on a continuous loop until the player restarts the game*/
       music = true;
       go = false;
-      background(0);
+      background(Winner);
+      textSize(32);
+      fill(random(255), random(255), random(255));
+      text("YOU WIN", width/2, (height/2)-100);
       fill(255);
       textSize(16);
-      text("YOU WIN", width/2, (height/2)-100);
       text("CLICK THE BUTTON TO RESTART", imagex, imagey+150);
       imageMode(CENTER);
       image(Button, imagex, imagey, ButtonS, ButtonS);
