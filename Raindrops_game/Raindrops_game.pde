@@ -13,6 +13,7 @@ AudioPlayer player;  //this allows for music to be played throughout the game//
 
 Raindrops[] drop = new Raindrops[1000];  //creates an array of rain drops//
 Cloud c1; 
+Lives l1, l2, l3;
 Catcher catch1;   //declares a class//
 PImage BadDay;
 PImage Button;
@@ -43,8 +44,11 @@ void setup() {    //this will run once//
   lives = 3;
   oldTime = 3000;       //the variables are given numberical values//
   c1 = new Cloud();
+  l1 = new Lives(120,1);
+  l2 = new Lives(70,2);
+  l3 = new Lives(20,3);
   catch1 = new Catcher();      //from the class, the object will be created//
-  for (int i =0; i < drop.length; i++) {
+  for (int i = 0; i < drop.length; i++) {
     drop[i] = new Raindrops(c1);
   } //initializes the raindrops//
   minim = new Minim(this);
@@ -79,7 +83,9 @@ void draw() {     //this will run on a continuous loop//
       catch1.check(drop[i]);
       catch1.Lose(drop[i]);
     }  //this allows one rain drop to fall//
-
+    l1.display();
+    l2.display();
+    l3.display();
     c1.display();   // the cloud will display//
     c1.move();     //the  cloud will move//
     catch1.display();  // the catcher is displayed//
