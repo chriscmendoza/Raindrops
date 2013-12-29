@@ -7,7 +7,6 @@ class Catcher { //this declares the class//
   Catcher() { //this is a constructor. it initializes the class//
     loc = new PVector(mouseX, height-S); //the location is now given numbers to appear at a specific point. in this PVector, the catcher will move in the x direction of wheveer the mouse is//
     S = 100; //this is the size of the catcher//
-    //    miss = 0;
     Guy = loadImage("SadGuy.png"); //this will load a picture of the catcher//
   }
 
