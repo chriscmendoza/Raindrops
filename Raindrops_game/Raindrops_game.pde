@@ -42,10 +42,10 @@ void setup() {    //this will run once//
   Winner = loadImage("Happy Day.png");
   Loser = loadImage("Loser.png"); //loads an image//
   ButtonS = 100;
-  rx = 50;
-  ry = 50;
-  rw = 90;
-  rh = 60;
+  rx = 510;
+  ry = 90;
+  rw = 60;
+  rh = 40;
   rain = 0;
   score = 0;
   imagex = width/2;
@@ -54,8 +54,8 @@ void setup() {    //this will run once//
   oldTime = 3000;       //the variables are given numberical values//
   c1 = new Cloud();
   l1 = new Lives(120, 1);
-  l2 = new Lives(70, 2);
-  l3 = new Lives(20, 3);
+  l2 = new Lives(90, 2);
+  l3 = new Lives(60, 3);
   catch1 = new Catcher();      //from the class, the object will be created//
   for (int i = 0; i < drop.length; i++) {
     drop[i] = new Raindrops(c1);
@@ -76,16 +76,17 @@ void draw() {     //this will run on a continuous loop//
     textAlign(CENTER); // the text will be aligned in the center//
     textSize(16); //this is the size of the text// 
     text("CLICK THE BUTTON TO START", imagex, imagey-50); 
-    text("To Win, You Must Catch Thirty Raindrops", imagex, imagey+150);
-    text("You Have Three Lives, Good Luck!", imagex, imagey+170); //these declare what the text will say and where on the screen it will be located//
+    text("To Win, You Must Catch Thirty Raindrops", imagex, imagey+60);
+    text("You Have Three Lives, Good Luck!", imagex, imagey+80); //these declare what the text will say and where on the screen it will be located//
     imageMode(CENTER); //the image is aligned in the center//
     image(Button, imagex, imagey, ButtonS, ButtonS); // this allows for the image to be shown. this is the button to start the game//
   }   // this is the starting screen//
   if (go == true && gameover == false) {
     background(BadDay); //this gives the color of the background//
     textSize(32);  //this gives the size of the text// 
-    text("Lives: ", width-170, 100);
-    text("Score: " + score, width-170, 40);     //this displays the text at specific coordinates//
+    fill(255);
+    text("Lives: ", width-180, 220);
+    text("Score: " + score, width-170, 160);     //this displays the text at specific coordinates//
     drop[rain] = new Raindrops(c1);     //the raindrop will fall from the cloud//
     for (int i =0; i < rain; i++) {
       drop[i].display();
@@ -123,21 +124,24 @@ void draw() {     //this will run on a continuous loop//
     imageMode(CENTER);
     image(Button, imagex, imagey, ButtonS, ButtonS);
   } // this is the gameover screen//
-  textSize(16);
   if (run==false && go == true) {
+    textSize(10);
+    textAlign(CENTER);
     fill(0, 255, 0);
     rect(rx, ry, rw, rh);
     fill(0);
-    text("CONTINUE", rx + 29, ry+34);
+    text("CONTINUE", (rw/2) + rx, (rh/2) + ry);
     oldTime = millis();
   }
   else if (run == true && go == true) {
+    textSize(14);
+    textAlign(CENTER);
     fill(255, 0, 0);
     rect(rx, ry, rw, rh);
     fill(0);
-    text("PAUSE", rx+29, ry+34);
+    text("PAUSE", (rw/2) + rx, (rh/2) + ry);
   }
-  if (score == 3) {
+  if (score == 30) {
     win = true;
     if (win==true) {
       if (music == false) {
@@ -149,12 +153,12 @@ void draw() {     //this will run on a continuous loop//
       music = true;
       go = false;
       background(Winner);
-      textSize(32);
+      textSize(64);
       fill(random(255), random(255), random(255));
-      text("YOU WIN", width/2, (height/2)-100);
-      fill(255);
+      text("YOU WIN", width/2, (height/2)-50);
+      fill(0);
       textSize(16);
-      text("CLICK THE BUTTON TO RESTART", imagex, imagey+150);
+      text("CLICK THE BUTTON TO RESTART", imagex, imagey+50);
       imageMode(CENTER);
       image(Button, imagex, imagey, ButtonS, ButtonS);
     } // this is the winning screen//

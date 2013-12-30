@@ -4,9 +4,9 @@ class Lives {
   int LifeS;
   int life;
   Lives(int x, int _life) {
-    loc = new PVector(width-x, 100);
+    loc = new PVector(width-x, 212);
     Life = loadImage("Life.png");
-    LifeS = 75;
+    LifeS = 50;
     life = _life;
   }
   void display() {

@@ -6,7 +6,7 @@ class Cloud { //this declares the class//
   PImage Cloud; //this declares an image. A cloud picture will be used for the object of this class//
 
   Cloud() { //this is a constructor. it initializes the class//
-    loc = new PVector(0, 10);  //the location of the cloud is now given specific numbers.//
+    loc = new PVector(0, 5);  //the location of the cloud is now given specific numbers.//
     vel = new PVector(3, 0); //this will make the cloud move ONLY in the x direction. the velocity in the y direction is 0.//
     cloudS = 150; //the size of the cloud is now given a number//
     Cloud = loadImage("Cloud.png"); //the image of the cloud will now be loaded and can be used in void display()//
