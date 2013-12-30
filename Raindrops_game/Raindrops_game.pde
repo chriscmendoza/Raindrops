@@ -20,11 +20,16 @@ PImage Button;
 PImage Winner;
 PImage Loser; //declares a variable for images to be loaded//
 int ButtonS;
+int rx;
+int ry;
+int rw;
+int rh;
 int rain;
 int lives;
 int oldTime;
 int imagex, imagey;
 int score; // declares a variable to be given a numerical value//
+boolean run;
 boolean go;
 boolean win;
 boolean gameover;
@@ -37,6 +42,10 @@ void setup() {    //this will run once//
   Winner = loadImage("Happy Day.png");
   Loser = loadImage("Loser.png"); //loads an image//
   ButtonS = 100;
+  rx = 50;
+  ry = 50;
+  rw = 90;
+  rh = 60;
   rain = 0;
   score = 0;
   imagex = width/2;
@@ -44,9 +53,9 @@ void setup() {    //this will run once//
   lives = 3;
   oldTime = 3000;       //the variables are given numberical values//
   c1 = new Cloud();
-  l1 = new Lives(120,1);
-  l2 = new Lives(70,2);
-  l3 = new Lives(20,3);
+  l1 = new Lives(120, 1);
+  l2 = new Lives(70, 2);
+  l3 = new Lives(20, 3);
   catch1 = new Catcher();      //from the class, the object will be created//
   for (int i = 0; i < drop.length; i++) {
     drop[i] = new Raindrops(c1);
@@ -54,6 +63,7 @@ void setup() {    //this will run once//
   minim = new Minim(this);
   player = minim.loadFile("Bad Day.mp3"); //declares what music will be playing as the player plays the game//
   player.loop(); //this allows the music to play on a continuous loop so that the song does NOT only play once//
+  run = true;
   go = false;
   gameover = false;
   win = false;
@@ -113,6 +123,20 @@ void draw() {     //this will run on a continuous loop//
     imageMode(CENTER);
     image(Button, imagex, imagey, ButtonS, ButtonS);
   } // this is the gameover screen//
+  textSize(16);
+  if (run==false && go == true) {
+    fill(0, 255, 0);
+    rect(rx, ry, rw, rh);
+    fill(0);
+    text("CONTINUE", rx + 29, ry+34);
+    oldTime = millis();
+  }
+  else if (run == true && go == true) {
+    fill(255, 0, 0);
+    rect(rx, ry, rw, rh);
+    fill(0);
+    text("PAUSE", rx+29, ry+34);
+  }
   if (score == 3) {
     win = true;
     if (win==true) {
@@ -164,6 +188,9 @@ void mousePressed() {
     player = minim.loadFile("Bad Day.mp3");
     player.loop();
   } //this allows for the game to go from the losing screen to the actual game//
+  if (go == true && gameover == false && win == false && mouseX>rx&&mouseX<rx+rw&&mouseY>ry&&mouseY<ry+rh) {
+    run = !run;
+  }
 }
 
 void stop() {

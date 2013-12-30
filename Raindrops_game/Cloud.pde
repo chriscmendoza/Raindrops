@@ -18,12 +18,14 @@ class Cloud { //this declares the class//
   }
 
   void move() { //this function will allow the cloud to move//
-    loc.add(vel); //this allows the function to actually move. the loc.x will be added by the velocity in the x direction. THIS IS KEY SO THE CLOUD WILL ACTUALLY MOVE//
-    if (loc.x > width-cloudS || loc.x <0) {
-      vel.mult(-1);
-    } /*this is needed so that the cloud will not only move in on direction and go off the screen. this says that if the cloud reaches the end of the display screen, 
-     it will go in the reverse order, and when it reaches the beginning of the screen, it will go back in the original direction it was going. 
-     This will go on a continuous loop, and the Cloud will not go off the screen and keep on moving, but ONLY in the x direction.*/
+    if (run) {
+      loc.add(vel); //this allows the function to actually move. the loc.x will be added by the velocity in the x direction. THIS IS KEY SO THE CLOUD WILL ACTUALLY MOVE//
+      if (loc.x > width-cloudS || loc.x <0) {
+        vel.mult(-1);
+      } /*this is needed so that the cloud will not only move in on direction and go off the screen. this says that if the cloud reaches the end of the display screen, 
+       it will go in the reverse order, and when it reaches the beginning of the screen, it will go back in the original direction it was going. 
+       This will go on a continuous loop, and the Cloud will not go off the screen and keep on moving, but ONLY in the x direction.*/
+    }
   }
 }
 
