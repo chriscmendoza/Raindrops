@@ -74,7 +74,7 @@ void draw() {     //this will run on a continuous loop//
   if (go == true && gameover == false) {
     background(BadDay); //this gives the color of the background//
     textSize(32);  //this gives the size of the text// 
-    text("Lives: " + lives, width-170, 100);
+    text("Lives: ", width-170, 100);
     text("Score: " + score, width-170, 40);     //this displays the text at specific coordinates//
     drop[rain] = new Raindrops(c1);     //the raindrop will fall from the cloud//
     for (int i =0; i < rain; i++) {
