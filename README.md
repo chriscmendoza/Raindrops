@@ -47,3 +47,4 @@
               ==== Don't know the ID3 code APIC
              *"NullPointer Exception" (or something along those lines"
 *The Pause Button ONLY pauses the raindrops and cloud from moving. The Catcher still moves and it can still catch the raindrop if the raindrops is paused on the x axis of the catcher. The Score will still increase if the raindrop is caught even if the game is paused.
+*When the actual code is open, maximize the screen to view the FULL comments.
