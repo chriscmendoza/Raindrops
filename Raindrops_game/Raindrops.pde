@@ -23,8 +23,10 @@ class Raindrops { //this declares the class//
   }
 
   void move() { // this will allow the raindrops to move (fall down)//
-    vel.add(acc); //this allows for the raindrop to increase its speed as it falls//
-    loc.add(vel); //this allows for the raindrop to actually be able to move and fall down//
+    if (run) { //this allows for the pause button to work. it will stop the raindrops where they are at//
+      vel.add(acc); //this allows for the raindrop to increase its speed as it falls//
+      loc.add(vel); //this allows for the raindrop to actually be able to move and fall down//
+    }
   }
 }
 
