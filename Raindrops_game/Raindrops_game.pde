@@ -26,6 +26,7 @@ int rw;
 int rh;
 int rain;
 int lives;
+int level;
 int oldTime;
 int imagex, imagey;
 int score; // declares a variable to be given a numerical value//
@@ -51,6 +52,7 @@ void setup() {    //this will run once//
   imagex = width/2;
   imagey = height/2;
   lives = 3;
+  level = 1;
   oldTime = 3000;       //the variables are given numberical values//
   c1 = new Cloud();
   l1 = new Lives(120, 1);
@@ -76,8 +78,10 @@ void draw() {     //this will run on a continuous loop//
     textAlign(CENTER); // the text will be aligned in the center//
     textSize(16); //this is the size of the text// 
     text("CLICK THE BUTTON TO START", imagex, imagey-50); 
-    text("To Win, You Must Catch Thirty Raindrops", imagex, imagey+60);
-    text("You Have Three Lives, Good Luck!", imagex, imagey+80); //these declare what the text will say and where on the screen it will be located//
+    text("You Must Catch Thirty Raindrops To Win", imagex, imagey+60);
+    text("You Have Three Lives, Good Luck!", imagex, imagey+80);
+    textSize(10);
+    text("*Hint: Use The Pause Button to Your Advantage ;)", imagex, imagey+180); //these declare what the text will say and where on the screen it will be located//
     imageMode(CENTER); //the image is aligned in the center//
     image(Button, imagex, imagey, ButtonS, ButtonS); // this allows for the image to be shown. this is the button to start the game//
   }   // this is the starting screen//
@@ -119,7 +123,8 @@ void draw() {     //this will run on a continuous loop//
     textSize(64);
     text("YOU LOSE", width/2, (height/2)-50);
     fill(255);
-    textSize(16);
+    textSize(20);
+    fill(255, 0, 0);
     text("CLICK THE BUTTON TO RESTART", imagex, imagey+50);
     imageMode(CENTER);
     image(Button, imagex, imagey, ButtonS, ButtonS);

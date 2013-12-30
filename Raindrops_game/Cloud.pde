@@ -15,6 +15,15 @@ class Cloud { //this declares the class//
   void display() { //this function will let the picture of the cloud appear//
     imageMode(CORNER);
     image(Cloud, loc.x, loc.y, cloudS, cloudS-70); //the cloud will be displayed. it is given an x and y location and the size of it is shown//
+    textSize(20);
+    fill(0);
+    text("Level " + level, loc.x+75, loc.y+48);
+    if (score == 10) {
+      level = 2;
+    }
+    if (score == 20) {
+      level = 3;
+    }
   }
 
   void move() { //this function will allow the cloud to move//
