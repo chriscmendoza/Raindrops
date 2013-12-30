@@ -13,7 +13,7 @@ class Lives { //this declares the class//
     life = _life; // the life variable is declared//
   }
 
-  void display() { //this will allow the lives to be shown in the game//
+  void display() { //this function will allow the lives to be shown in the game//
     if (lives >= life) { //this allows the lives pictures (raindrops) to be removed when a life is lost//
       image(Life, loc.x, loc.y, LifeS, LifeS); //the life (raindrop) will be shown and it has a location and a size//
     }
