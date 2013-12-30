@@ -15,12 +15,6 @@ class Catcher { //this declares the class//
     image(Guy, loc.x, loc.y, S, S); //this is the catcher//
   }
 
-  void move() {
-    if (run) {
-      loc.set(mouseX, height-(S/2)); //this sets the location//
-    }
-  }
-
   void check(Raindrops drop) { //this function will make the catcher actually catch the raindrops//
     if (loc.dist(drop.loc) < S/2 + drop.d/2) {
       drop.loc.set(-width, 0);
