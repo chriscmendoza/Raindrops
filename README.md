@@ -48,8 +48,6 @@
              *"NullPointerException"
 *The Pause Button ONLY pauses the raindrops and cloud from moving. The Catcher still moves and it can still catch the raindrop if the raindrops is paused on the x axis of the catcher. The Score will still increase if the raindrop is caught even if the game is paused.
 *When the actual code is open, maximize the screen to view the FULL comments.
-*The Stat and Restart Button do work, BUT if you click a little bit after, before, above, or below, the button still works. It's not a big difference, but it will work if you move a tad bit to the sides of it.
-<<<<<<< HEAD
+*The Start and Restart Button do work, BUT if you click a little bit after, before, above, or below, the button still works. It's not a big difference, but it will work if you move a tad bit to the sides of it.
 *Just as the Start and Restart button, the Catcher can catch the raindrops even if it falls a tad bit to its side.
-=======
->>>>>>> Secondary
+
